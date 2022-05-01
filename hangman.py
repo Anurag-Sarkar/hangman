@@ -17,13 +17,14 @@ def hangman(tries):
 
 def printer(l):
 
+
     for i in range(len(l)):
         print(l[i],end=" ")
     print()
 
 word = wordpicker()
 tries = 0
-chance = 4
+chance = 7
 l = ["_" for i in range(len(word))]
 printer(l)
 
@@ -43,9 +44,12 @@ while True:
         
     if (tries == chance):
         print("I trusted you...")
+        print("the word was,",word)
         break
 
     if guess not in word:
         tries+=1
         hangman(tries)
         print()
+        print()
+        printer(l)
