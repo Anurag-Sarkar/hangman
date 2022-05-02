@@ -1,4 +1,5 @@
 import random
+import os
 
 def wordpicker():
 
@@ -25,7 +26,7 @@ def printer(l):
 word = wordpicker()
 tries = 0
 chance = 8
-g = []
+g = set()
 l = ["_" for i in range(len(word))]
 printer(l)
 
@@ -34,9 +35,10 @@ while tries != chance:
     if word.upper() == "".join(l):
         print("\nYaaa! you saved me!\n")
         break
-
-    guess = input("\nEnter Guess: ",)
-    g.append(guess)
+    print("Guess the word?")
+    guess = input("\nEnter Guess Letter: ")
+    os.system("cls")
+    g.add(guess)
     if len(g) > 0:
         for i in g:
             print("(",end="")
@@ -48,6 +50,9 @@ while tries != chance:
         index = [i for i, l in enumerate(word) if l == guess]
         for i in index:
             l[i] = guess.upper()
+        hangman(tries)
+        print()
+        print()
         printer(l)
 
     if guess not in word:
